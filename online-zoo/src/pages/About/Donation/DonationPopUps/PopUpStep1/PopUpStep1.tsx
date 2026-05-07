@@ -4,10 +4,12 @@ import useGetData from "@/hooks/useGetData";
 
 import type { Animal } from "@/pages/About/PetsCarousel/Carousel/Carousel.types";
 
+import type { PopUpStep1Props } from "./PopUpStep1.types";
+
 import "./PopUpStep1.scss";
 import "../PopUpSteps.scss";
 
-const PopUpStep1: React.FC = () => {
+const PopUpStep1: React.FC<PopUpStep1Props> = ({ handleNextClick }) => {
   const { data, error } = useGetData<Animal>(`pets`);
   const [amount, setAmount] = useState<string>("");
   const [animal, setAnimal] = useState<string>("");
@@ -125,7 +127,11 @@ const PopUpStep1: React.FC = () => {
             </clipPath>
           </defs>
         </svg>
-        <button disabled={!enableNext} className="btn-next">
+        <button
+          onClick={handleNextClick}
+          disabled={!enableNext}
+          className="btn-next"
+        >
           next
           <svg
             width="25"
