@@ -30,7 +30,7 @@ const PopUpStep1: React.FC<PopUpStep1Props> = ({ handleNextClick }) => {
     if (target.tagName === "SELECT") setAnimal(target.value);
   };
 
-  const enableNext = amount && animal;
+  const enableNext = amount.length && animal.length;
 
   return (
     <div className="donation-pop-up-step-1">

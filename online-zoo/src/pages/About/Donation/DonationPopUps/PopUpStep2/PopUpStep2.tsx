@@ -8,6 +8,7 @@ const PopUpStep2: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
+  const enable = name.length > 0 && email.length > 0;
   return (
     <div className="donation-pop-up-step-2">
       <h3>make your donation</h3>
@@ -77,7 +78,7 @@ const PopUpStep2: React.FC = () => {
           </defs>
         </svg>
         <button className="btn-back">Back</button>
-        <button disabled className="btn-next">
+        <button disabled={!enable} className="btn-next">
           next
           <svg
             width="25"
