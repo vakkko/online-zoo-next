@@ -1,7 +1,10 @@
 import { MONTHS } from "@/consts/consts";
+
+import type { PopUpStep3Props } from "./PopUpStep3.types";
+
 import "./PopUpStep3.scss";
 
-const PopUpStep3: React.FC = () => {
+const PopUpStep3: React.FC<PopUpStep3Props> = ({ handleBackClick }) => {
   return (
     <div className="donation-pop-up-step-3">
       <h3>make your donation</h3>
@@ -37,7 +40,7 @@ const PopUpStep3: React.FC = () => {
             </label>
             <br />
             <select id="card-month" name="card-month" required>
-              <option value="" hidden selected>
+              <option value="" hidden>
                 Month
               </option>
               {MONTHS.map((month, i) => (
@@ -54,7 +57,7 @@ const PopUpStep3: React.FC = () => {
           </div>
           <div className="select-container year">
             <select id="card-year" name="card-year" required>
-              <option value="" selected hidden>
+              <option value="" hidden>
                 Year
               </option>
             </select>
@@ -122,7 +125,9 @@ const PopUpStep3: React.FC = () => {
             </clipPath>
           </defs>
         </svg>
-        <button className="btn-back">Back</button>
+        <button onClick={handleBackClick} className="btn-back">
+          Back
+        </button>
         <button disabled className="btn-complete-donation">
           complete donation
           <svg

@@ -41,9 +41,14 @@ const DonationPopUps: React.FC<DonationPopUpsProps> = ({
       {showStep2 && (
         <PopUpStep2
           handleNextClick={() => handleShowStep(setShowStep3, setShowStep2)}
+          handleBackClick={() => handleShowStep(setShowStep1, setShowStep2)}
         />
       )}
-      {showStep3 && <PopUpStep3 />}
+      {showStep3 && (
+        <PopUpStep3
+          handleBackClick={() => handleShowStep(setShowStep2, setShowStep3)}
+        />
+      )}
     </div>
   );
 };

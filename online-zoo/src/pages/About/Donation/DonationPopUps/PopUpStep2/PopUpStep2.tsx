@@ -6,7 +6,10 @@ import type { PopUpStep2Props } from "./PopUpStep2.types";
 
 import "./PopUpStep2.scss";
 
-const PopUpStep2: React.FC<PopUpStep2Props> = ({ handleNextClick }) => {
+const PopUpStep2: React.FC<PopUpStep2Props> = ({
+  handleNextClick,
+  handleBackClick,
+}) => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
@@ -79,7 +82,9 @@ const PopUpStep2: React.FC<PopUpStep2Props> = ({ handleNextClick }) => {
             </clipPath>
           </defs>
         </svg>
-        <button className="btn-back">Back</button>
+        <button className="btn-back" onClick={handleBackClick}>
+          Back
+        </button>
         <button
           disabled={!enable}
           onClick={handleNextClick}
