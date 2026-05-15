@@ -6,7 +6,7 @@ export interface PopUpInputProps {
   type: string;
   id: string;
   placeholder: string;
-  autocomplete: string;
+  autocomplete?: string;
   value: string;
   setState: Dispatch<SetStateAction<string>>;
 }

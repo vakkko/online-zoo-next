@@ -3,8 +3,13 @@ import { MONTHS } from "@/consts/consts";
 import type { PopUpStep3Props } from "./PopUpStep3.types";
 
 import "./PopUpStep3.scss";
+import PopUpInput from "../PopUpInput/PopUpInput";
+import { useState } from "react";
 
 const PopUpStep3: React.FC<PopUpStep3Props> = ({ handleBackClick }) => {
+  const [card, setCard] = useState<string>("");
+  const [cvvNumber, setCvvNumber] = useState<string>("");
+
   return (
     <div className="donation-pop-up-step-3">
       <h3>make your donation</h3>
@@ -13,26 +18,26 @@ const PopUpStep3: React.FC<PopUpStep3Props> = ({ handleBackClick }) => {
         <hr />
         <form>
           <div className="credit-card-input">
-            <label htmlFor="card">
-              <span className="asterisk">*</span> Credit Card Number
-            </label>
-            <br />
-            <input type="text" id="card" maxLength={16} placeholder="" />
-            <p className="err-msg card hidden">
-              Card Number Should be exactly 16 digits long and contain only
-              numeric characters
-            </p>
+            <PopUpInput
+              htmlFor="card"
+              label="Credit Card Number"
+              type="text"
+              id="card"
+              placeholder=""
+              value={card}
+              setState={setCard}
+            />
           </div>
           <div>
-            <label htmlFor="cvv">
-              <span className="asterisk">*</span> CVVNumber
-            </label>
-            <br />
-            <input type="text" id="cvv" maxLength={3} placeholder="" />
-            <p className="err-msg cvv hidden">
-              CVV Should be exactly 3 digits long and contain only numeric
-              characters
-            </p>
+            <PopUpInput
+              htmlFor="cvv"
+              label="CVVNumber"
+              type="text"
+              id="cvv"
+              placeholder=""
+              value={cvvNumber}
+              setState={setCvvNumber}
+            />
           </div>
           <div className="select-container">
             <label htmlFor="month">
