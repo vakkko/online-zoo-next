@@ -41,6 +41,12 @@ const PopUpInput: React.FC<PopUpInputProps> = ({
         return;
       }
       setErrorMsg("");
+    } else if (id === "cvv") {
+      if (!cardRegex.test(value)) {
+        setErrorMsg("Cvv should contain only numeric characters.");
+        return;
+      }
+      setErrorMsg("");
     }
   };
   return (
