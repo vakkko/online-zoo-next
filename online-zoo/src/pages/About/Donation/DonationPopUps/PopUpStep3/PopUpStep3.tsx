@@ -2,13 +2,29 @@ import { MONTHS } from "@/consts/consts";
 
 import type { PopUpStep3Props } from "./PopUpStep3.types";
 
-import "./PopUpStep3.scss";
 import PopUpInput from "../PopUpInput/PopUpInput";
-import { useState } from "react";
+
+import {
+  useState,
+  type ChangeEvent,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
+
+import "./PopUpStep3.scss";
 
 const PopUpStep3: React.FC<PopUpStep3Props> = ({ handleBackClick }) => {
   const [card, setCard] = useState<string>("");
   const [cvvNumber, setCvvNumber] = useState<string>("");
+  const [month, setMonth] = useState<string>("");
+  const [year, setYear] = useState<string>("");
+
+  const handleSelectChange = (
+    e: ChangeEvent<HTMLSelectElement>,
+    setState: Dispatch<SetStateAction<string>>,
+  ) => {
+    setState(e.target.value);
+  };
 
   return (
     <div className="donation-pop-up-step-3">
@@ -46,7 +62,12 @@ const PopUpStep3: React.FC<PopUpStep3Props> = ({ handleBackClick }) => {
               <span className="asterisk">*</span> Expiration Date
             </label>
             <br />
-            <select id="card-month" name="card-month" required>
+            <select
+              onChange={(e) => handleSelectChange(e, setMonth)}
+              id="card-month"
+              name="card-month"
+              required
+            >
               <option value="" hidden>
                 Month
               </option>
@@ -63,7 +84,12 @@ const PopUpStep3: React.FC<PopUpStep3Props> = ({ handleBackClick }) => {
             />
           </div>
           <div className="select-container year">
-            <select id="card-year" name="card-year" required>
+            <select
+              onChange={(e) => handleSelectChange(e, setYear)}
+              id="card-year"
+              name="card-year"
+              required
+            >
               <option value="" hidden>
                 Year
               </option>
