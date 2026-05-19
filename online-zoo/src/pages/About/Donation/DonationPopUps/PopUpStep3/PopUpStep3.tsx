@@ -67,6 +67,10 @@ const PopUpStep3: React.FC<PopUpStep3Props> = ({ handleBackClick }) => {
               <option value="" hidden>
                 Year
               </option>
+              {Array.from({ length: 40 }, (_, index) => {
+                const number = index + 2005;
+                return <option key={number}>{number}</option>;
+              })}
             </select>
             <img
               src="./images/donation-pop-up/arrow-down.png"
