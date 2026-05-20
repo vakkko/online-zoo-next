@@ -12,11 +12,19 @@ const PopUpStep2: React.FC<PopUpStep2Props> = ({
   handleNextClick,
   handleBackClick,
 }) => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string | null>(() =>
+    sessionStorage.getItem("name"),
+  );
+  const [email, setEmail] = useState<string | null>(() =>
+    sessionStorage.getItem("email"),
+  );
 
   const enable =
-    name.length > 3 && nameRegex.test(name) && emailRegex.test(email);
+    name &&
+    email &&
+    name.length > 3 &&
+    nameRegex.test(name) &&
+    emailRegex.test(email);
   return (
     <div className="donation-pop-up-step-2">
       <h3>make your donation</h3>

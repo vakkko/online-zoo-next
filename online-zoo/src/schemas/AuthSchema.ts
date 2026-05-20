@@ -9,6 +9,11 @@ export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const requiredText = (name: string) => name + " is required";
 
 export const LoginSchema = yup.object({
+  login: yup.string().required(requiredText("Login")),
+  password: yup.string().required(requiredText("Password")),
+});
+
+export const RegisterSchema = yup.object({
   login: yup
     .string()
     .required(requiredText("Login"))
@@ -19,22 +24,17 @@ export const LoginSchema = yup.object({
     .required(requiredText("Password"))
     .min(7, "Should be at least 6 characters long")
     .matches(passwordRegex, "Should contain at least 1 specail character"),
+  email: yup.string().email("Invalid Email").required(requiredText("Email")),
+  confirm_password: yup
+    .string()
+    .required()
+    .oneOf([yup.ref("password")], "Passwords must match"),
+  name: yup
+    .string()
+    .required(requiredText("Name"))
+    .min(3, "At least 3 characters")
+    .matches(nameRegex, "Only English letters are allowed"),
 });
-
-export const RegisterSchema = LoginSchema.concat(
-  yup.object({
-    email: yup.string().email("Invalid Email").required(requiredText("Email")),
-    confirm_password: yup
-      .string()
-      .required()
-      .oneOf([yup.ref("password")], "Passwords must match"),
-    name: yup
-      .string()
-      .required(requiredText("Name"))
-      .min(3, "At least 3 characters")
-      .matches(nameRegex, "Only English letters are allowed"),
-  }),
-);
 
 export type LoginSchemaTypes = yup.InferType<typeof LoginSchema>;
 export type ResgisterSchemaTypes = yup.InferType<typeof RegisterSchema>;

@@ -54,7 +54,7 @@ const PopUpInput: React.FC<PopUpInputProps> = ({
       </label>
       <br />
       <input
-        value={value}
+        value={value ? value : ""}
         onChange={handleChange}
         type={type}
         id={id}

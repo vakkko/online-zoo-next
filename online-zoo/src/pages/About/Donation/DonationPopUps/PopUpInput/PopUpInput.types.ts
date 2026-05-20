@@ -7,7 +7,7 @@ export interface PopUpInputProps {
   id: string;
   placeholder: string;
   autocomplete?: string;
-  value: string;
-  setState: Dispatch<SetStateAction<string>>;
+  value: string | null;
+  setState: Dispatch<SetStateAction<string | null>>;
   maxLength?: number;
 }
